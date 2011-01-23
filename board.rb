@@ -56,7 +56,7 @@ class Board
       :wool, :wool, :wool, :wool
     ].sort_by { rand }
     (0...18).each { | i | tile_settings << {:type => tile_types[i], :roll => tile_rolls[i]} }
-puts tile_settings.inspect
+    tile_settings = tile_settings.sort_by { rand }
 
     intersection_offsets = {
       :n => [0, -1, 1], :nw  => [-1, 0, 1],
@@ -65,7 +65,8 @@ puts tile_settings.inspect
     }
     tile_coords = adjacent_tile_coords(adjacent_tile_coords({"000" => [0, 0, 0]}))
     tile_coords.each_pair do | key, coords |
-      tile = Tile.new(self, coords)
+      settings = tile_settings.pop
+      tile = Tile.new(self, coords, settings[:type], settings[:roll])
       @tiles[Board.key(*coords)] = tile
 
       intersection_offsets.each_pair do | intersection_direction, offsets |
