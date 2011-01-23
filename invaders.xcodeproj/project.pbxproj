@@ -1,0 +1,133 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXFileReference section */
+		5F66A45612E8FDBD00DB0A39 /* board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = board.rb; sourceTree = "<group>"; };
+		5F66A45712E8FDBD00DB0A39 /* hexcube.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = hexcube.rb; sourceTree = "<group>"; };
+		5F66A45812E8FDBD00DB0A39 /* intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = intersection.rb; sourceTree = "<group>"; };
+		5F66A45912E8FDBD00DB0A39 /* invader.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = invader.rb; sourceTree = "<group>"; };
+		5F66A45A12E8FDBD00DB0A39 /* path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = path.rb; sourceTree = "<group>"; };
+		5F66A45B12E8FDBD00DB0A39 /* player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = player.rb; sourceTree = "<group>"; };
+		5F66A45C12E8FDBD00DB0A39 /* tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tile.rb; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		5F66A44912E8FD7F00DB0A39 = {
+			isa = PBXGroup;
+			children = (
+				5F66A45612E8FDBD00DB0A39 /* board.rb */,
+				5F66A45712E8FDBD00DB0A39 /* hexcube.rb */,
+				5F66A45812E8FDBD00DB0A39 /* intersection.rb */,
+				5F66A45912E8FDBD00DB0A39 /* invader.rb */,
+				5F66A45A12E8FDBD00DB0A39 /* path.rb */,
+				5F66A45B12E8FDBD00DB0A39 /* player.rb */,
+				5F66A45C12E8FDBD00DB0A39 /* tile.rb */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		5F66A46912E8FE8100DB0A39 /* Call ruby */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-rubygems invader.rb";
+			buildConfigurationList = 5F66A46C12E8FE9F00DB0A39 /* Build configuration list for PBXLegacyTarget "Call ruby" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/ruby;
+			dependencies = (
+			);
+			name = "Call ruby";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Call ruby";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		5F66A44B12E8FD7F00DB0A39 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 5F66A44E12E8FD7F00DB0A39 /* Build configuration list for PBXProject "invaders" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 5F66A44912E8FD7F00DB0A39;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F66A46912E8FE8100DB0A39 /* Call ruby */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		5F66A44C12E8FD7F00DB0A39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		5F66A44D12E8FD7F00DB0A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		5F66A46A12E8FE8100DB0A39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "run invader.rb";
+			};
+			name = Debug;
+		};
+		5F66A46B12E8FE8100DB0A39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Call ruby";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F66A44E12E8FD7F00DB0A39 /* Build configuration list for PBXProject "invaders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F66A44C12E8FD7F00DB0A39 /* Debug */,
+				5F66A44D12E8FD7F00DB0A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F66A46C12E8FE9F00DB0A39 /* Build configuration list for PBXLegacyTarget "Call ruby" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F66A46A12E8FE8100DB0A39 /* Debug */,
+				5F66A46B12E8FE8100DB0A39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F66A44B12E8FD7F00DB0A39 /* Project object */;
+}
