@@ -8,19 +8,11 @@ require 'Board'
 display = Proc.new do
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-  $board.tiles.each do | key, t |
-    draw_tile t
-  end
+  $board.tiles.each { | key, t | draw_tile t }
+  $board.intersections.each { | key, i | draw_intersection i }
+  $board.paths.each { | key, p | draw_path p }
 
-  $board.intersections.each do | key, i |
-    draw_intersection i
-  end
-
-  $board.paths.each do | key, p |
-    draw_path p
-  end
-  
-#  draw_hex_lines(s)
+  # draw_hex_lines(s)
   
   glutSwapBuffers()
 end
@@ -40,21 +32,28 @@ def xy_from_rgb(r, g, b, s = 1)
 end
 
 def draw_tile(tile)
-  glPushMatrix()
-
   x, y = *xy_from_rgb(*tile.rgb)
+
+  glPushMatrix()
+  
   glTranslate(x, y, 0.0)
-#  glScale(3, 3, 1)
-  glColor(0.7, 0.7, 0.7)
+  glColor(*tile.color)
   glCallList($startList)
   
   glPopMatrix()
+
+  glPushMatrix()
+  glRasterPos2f(x, y);
+  "asdf".each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+  glPopMatrix()
+
 end
 
 def draw_intersection(intersection)
+  x, y = *xy_from_rgb(*intersection.rgb)
+
   glPushMatrix()
 
-  x, y = *xy_from_rgb(*intersection.rgb)
   glTranslate(x, y, 0.0)
   glColor(0.7, 0.7, 0.7)
   glCallList($startList + 1)
@@ -63,19 +62,24 @@ def draw_intersection(intersection)
 end
 
 def draw_path(path)
-  glPushMatrix()
 
   # Rotate the path so it follows the vector from 1 to 2 then move it so it is
   # centered on the midpoint of the two intersections.
   # to the angle of the two.
-  x1, y1 = *xy_from_rgb(*path.spots[0].rgb)
-  x2, y2 = *xy_from_rgb(*path.spots[1].rgb)
-  theta = 0
-  if (path.spots[0].rgb[0] == path.spots[1].rgb[0]) 
-    theta = 60
-  elsif (path.spots[0].rgb[1] == path.spots[1].rgb[1]) 
-    theta = 120
+  left, right = *path.spots
+  theta = case 
+  when left.rgb[0] == right.rgb[0]
+    60
+  when left.rgb[1] == right.rgb[1]
+    120
+  else
+    0
   end
+  x1, y1 = *xy_from_rgb(*left.rgb)
+  x2, y2 = *xy_from_rgb(*right.rgb)
+
+  glPushMatrix()
+
   glTranslate((x1 + x2) / 2, (y1 + y2) / 2, 0.0)
   glRotate(theta, 0, 0, 1)
   glColor(0.7, 0.7, 0.7)
@@ -153,9 +157,20 @@ glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB)
 glutInitWindowSize(800, 800) 
 glutInitWindowPosition(0, 0)
 glutCreateWindow($0)
+=begin
+glEnable(GL_LINE_SMOOTH)
+glHint(GL_LINE_SMOOTH_HINT, GL_FASTEST)
+glEnable(GL_BLEND)
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+glLineWidth(1.5)
+=end
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+glEnable(GL_BLEND)
+glEnable(GL_LINE_SMOOTH)
+glEnable(GL_POLYGON_SMOOTH)
+glLineWidth(2.0)
+
 glClearColor(1.0, 1.0, 1.0, 0.0)
-glClearDepth(1.0);
-glShadeModel(GL_FLAT)
 # Register display/resize callbacks
 glutDisplayFunc(display) 
 glutReshapeFunc(reshape) 
