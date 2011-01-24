@@ -9,7 +9,7 @@ class Board
     return "#{r}#{g}#{b}"
   end
 
-  attr_accessor :intersections, :paths, :tiles
+  attr_accessor :players, :intersections, :paths, :tiles
 
   def initialize(players)
     @tiles = {}
@@ -18,8 +18,8 @@ class Board
     @players = {}
     @resources = {:brick => 19, :grain => 19, :lumber => 19, :ore => 19, :wool => 19}
 
-    players.each do |color|
-      @players[color] = Player.new(self, color)
+    players.each do | name, color|
+      @players[name] = Player.new(self, name, color)
     end
 
     # I'm use a hex grid coordinate system described here:

@@ -41,7 +41,7 @@ class BoardView
 
       glMatrixMode(GL_PROJECTION)
       glLoadIdentity()
-      glOrtho(-10.0, 10.0, -10.0, 10.0, -1.0, 1.0)
+      gluOrtho2D(-10.0, 10.0, -10.0, 10.0)
       
       glMatrixMode(GL_MODELVIEW)
       glLoadIdentity()
@@ -53,13 +53,13 @@ class BoardView
   
   def build_models
     # Setup an object for "points"
-    startList = glGenLists(3)
+    startList = glGenLists(6)
     qobj = gluNewQuadric()
 
-    gluQuadricDrawStyle(qobj, GLU_FILL) # flat shaded
     gluQuadricNormals(qobj, GLU_FLAT)
 
     # Tile
+    gluQuadricDrawStyle(qobj, GLU_FILL)
     glNewList(startList, GL_COMPILE)
     glPushMatrix()
     glRotate(30, 0, 0, 1)
@@ -67,17 +67,38 @@ class BoardView
     glPopMatrix()
     glEndList()
 
-    # Intersection
+    # Empty intersection
+    gluQuadricDrawStyle(qobj, GLU_SILHOUETTE);
     glNewList(startList + 1, GL_COMPILE)
     gluDisk(qobj, 0, 0.25, 6, 1)
     glEndList()
 
-    # Path
+    # Settled intersection
+    gluQuadricDrawStyle(qobj, GLU_FILL)
     glNewList(startList + 2, GL_COMPILE)
-    glPushMatrix()
-    glScale(2, 0.5, 1)
-    glutSolidCube(0.5)
-    glPopMatrix()
+    gluDisk(qobj, 0, 0.25, 3, 1)
+    glEndList()
+
+    # City intersection
+    gluQuadricDrawStyle(qobj, GLU_FILL)
+    glNewList(startList + 3, GL_COMPILE)
+    gluDisk(qobj, 0, 0.25, 4, 1)
+    glEndList()
+
+    # Empty path
+    glNewList(startList + 4, GL_COMPILE)
+    glBegin(GL_LINE_LOOP)
+    glVertex2f(0.5, 0.2); glVertex2f(0.5, -0.2)
+    glVertex2f(-0.5, -0.2); glVertex2f(-0.5, 0.2)
+    glEnd()    
+    glEndList()
+
+    # Road path
+    glNewList(startList + 5, GL_COMPILE)
+    glBegin(GL_POLYGON)
+    glVertex2f(0.5, 0.2); glVertex2f(0.5, -0.2)
+    glVertex2f(-0.5, -0.2); glVertex2f(-0.5, 0.2)
+    glEnd()    
     glEndList()
 
     startList
@@ -102,19 +123,22 @@ class BoardView
     x, y = *xy_from_rgb(*tile.rgb)
 
     glPushMatrix()
-    
     glTranslate(x, y, 0.0)
     glColor(*tile.color)
     glCallList(@startList)
     
-    glPopMatrix()
+    #  glPushMatrix()
+    glColor(1, 1, 1)
+    s = tile.roll.to_s
+    # TODO i'm sure there's an idiom using inject that would be better here.
+    width = 0
+    s.each_byte { |c| width += glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c) }
+    glRasterPos3f(-0.01 * width, -0.15, 0);
+    s.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+      
+    #  glPopMatrix()    
 
-=begin
-    glPushMatrix()
-    glRasterPos2f(x, y);
-    "asdf".each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
     glPopMatrix()
-=end
   end
 
   def draw_intersection(intersection)
@@ -123,14 +147,22 @@ class BoardView
     glPushMatrix()
 
     glTranslate(x, y, 0.0)
-    glColor(0.7, 0.7, 0.7)
-    glCallList(@startList + 1)
+    case intersection.type
+    when :unsettled
+      glColor(0, 0, 0)#      glColor(0.8, 0.8, 0.8)
+      glCallList(@startList + 1)
+    when :settlement
+      glColor(*intersection.owner.color)
+      glCallList(@startList + 2)
+    when :city
+      glColor(*intersection.owner.color)
+      glCallList(@startList + 3)
+    end
     
     glPopMatrix()
   end
 
   def draw_path(path)
-
     # Rotate the path so it follows the vector from 1 to 2 then move it so it is
     # centered on the midpoint of the two intersections.
     # to the angle of the two.
@@ -150,8 +182,13 @@ class BoardView
 
     glTranslate((x1 + x2) / 2, (y1 + y2) / 2, 0.0)
     glRotate(theta, 0, 0, 1)
-    glColor(0.7, 0.7, 0.7)
-    glCallList(@startList + 2)
+    if path.owner === nil
+      glColor(0, 0, 0)#      glColor(0.8, 0.8, 0.8)
+      glCallList(@startList + 4)
+    else
+      glColor(*path.owner.color)
+      glCallList(@startList + 5)
+    end
 
     glPopMatrix()
   end

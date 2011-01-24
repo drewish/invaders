@@ -7,13 +7,9 @@ class Path
     @spots.each { |spot| spot.road = self }
   end
   
-  def inspect
-    @spots.join('-')
-  end
-  
   def build(owner)
     if @owner.nil? and owner.pay_for :road
-      @owner = ower
+      @owner = owner
     end
   end
 end

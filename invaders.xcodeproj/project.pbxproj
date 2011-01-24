@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5F66A45612E8FDBD00DB0A39 /* board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = board.rb; sourceTree = "<group>"; };
-		5F66A45712E8FDBD00DB0A39 /* hexcube.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = hexcube.rb; sourceTree = "<group>"; };
-		5F66A45812E8FDBD00DB0A39 /* intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = intersection.rb; sourceTree = "<group>"; };
-		5F66A45912E8FDBD00DB0A39 /* invader.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = invader.rb; sourceTree = "<group>"; };
-		5F66A45A12E8FDBD00DB0A39 /* path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = path.rb; sourceTree = "<group>"; };
-		5F66A45B12E8FDBD00DB0A39 /* player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = player.rb; sourceTree = "<group>"; };
-		5F66A45C12E8FDBD00DB0A39 /* tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tile.rb; sourceTree = "<group>"; };
+		5F30F12912EBFF9F00CCF439 /* BoardView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = BoardView.rb; sourceTree = "<group>"; };
+		5F30F17C12EC03FE00CCF439 /* GameControler.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GameControler.rb; sourceTree = "<group>"; };
+		5F30F23C12ECADCD00CCF439 /* Board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Board.rb; sourceTree = "<group>"; };
+		5F30F23D12ECADCD00CCF439 /* Path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Path.rb; sourceTree = "<group>"; };
+		5F30F23E12ECADCD00CCF439 /* Player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Player.rb; sourceTree = "<group>"; };
+		5F30F23F12ECADCD00CCF439 /* Tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Tile.rb; sourceTree = "<group>"; };
+		5F30F25912ECB20D00CCF439 /* Intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Intersection.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		5F66A44912E8FD7F00DB0A39 = {
 			isa = PBXGroup;
 			children = (
-				5F66A45612E8FDBD00DB0A39 /* board.rb */,
-				5F66A45712E8FDBD00DB0A39 /* hexcube.rb */,
-				5F66A45812E8FDBD00DB0A39 /* intersection.rb */,
-				5F66A45912E8FDBD00DB0A39 /* invader.rb */,
-				5F66A45A12E8FDBD00DB0A39 /* path.rb */,
-				5F66A45B12E8FDBD00DB0A39 /* player.rb */,
-				5F66A45C12E8FDBD00DB0A39 /* tile.rb */,
+				5F30F25912ECB20D00CCF439 /* Intersection.rb */,
+				5F30F23C12ECADCD00CCF439 /* Board.rb */,
+				5F30F23D12ECADCD00CCF439 /* Path.rb */,
+				5F30F23E12ECADCD00CCF439 /* Player.rb */,
+				5F30F23F12ECADCD00CCF439 /* Tile.rb */,
+				5F30F17C12EC03FE00CCF439 /* GameControler.rb */,
+				5F30F12912EBFF9F00CCF439 /* BoardView.rb */,
 			);
 			sourceTree = "<group>";
 		};
@@ -35,11 +35,12 @@
 /* Begin PBXLegacyTarget section */
 		5F66A46912E8FE8100DB0A39 /* Call ruby */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "-rubygems invader.rb";
+			buildArgumentsString = " -rubygems GameControler.rb";
 			buildConfigurationList = 5F66A46C12E8FE9F00DB0A39 /* Build configuration list for PBXLegacyTarget "Call ruby" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/ruby;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = "Call ruby";
@@ -91,7 +92,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = "run invader.rb";
+				PRODUCT_NAME = "run it";
 			};
 			name = Debug;
 		};
