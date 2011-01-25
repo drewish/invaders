@@ -6,49 +6,16 @@ require 'Board'
 class BoardView
 
   def initialize(board)
-    #  Request double buffer display mode.
-    glutInit
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB)
-    glutInitWindowSize(800, 800) 
-    glutInitWindowPosition(0, 0)
-    glutCreateWindow($0)
-
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-    glEnable(GL_BLEND)
-    glEnable(GL_LINE_SMOOTH)
-    glEnable(GL_POLYGON_SMOOTH)
-    glLineWidth(2.0)
+    @board = board
+    @startList = build_models
+  end
+  
+  def draw
     glClearColor(1.0, 1.0, 1.0, 0.0)
 
-    @board = board
-
-    # Register display/resize callbacks
-    display = Proc.new do
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-
-      @board.tiles.each { | key, t | draw_tile t }
-      @board.intersections.each { | key, i | draw_intersection i }
-      @board.paths.each { | key, p | draw_path p }
-
-      # draw_hex_lines(s)
-      
-      glutSwapBuffers()
-    end
-    glutDisplayFunc(display) 
-    
-    reshape = Proc.new do |w, h|
-      glViewport(0, 0, w, h)
-
-      glMatrixMode(GL_PROJECTION)
-      glLoadIdentity()
-      gluOrtho2D(-10.0, 10.0, -10.0, 10.0)
-      
-      glMatrixMode(GL_MODELVIEW)
-      glLoadIdentity()
-    end
-    glutReshapeFunc(reshape) 
-
-    @startList = build_models
+    @board.tiles.each { | key, t | draw_tile t }
+    @board.intersections.each { | key, i | draw_intersection i }
+    @board.paths.each { | key, p | draw_path p }
   end
   
   def build_models
