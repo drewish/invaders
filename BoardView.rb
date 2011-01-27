@@ -18,6 +18,63 @@ class BoardView
     @board.paths.each { | key, p | draw_path p }
   end
   
+  def selected(x, y)
+  
+  end
+  
+  def attempted_selected(x, y)
+    viewport = glGetIntegerv(GL_VIEWPORT)
+	selectBuf = glSelectBuffer(512)
+
+    glRenderMode(GL_SELECT)
+
+    glInitNames()
+    glPushName(0)
+
+    glMatrixMode(GL_PROJECTION)
+    glPushMatrix()
+    glLoadIdentity()
+    
+    glMatrixMode(GL_MODELVIEW)
+=begin
+
+    # create 5x5 pixel picking region near cursor location
+    gluPickMatrix(x, (viewport[3] - y), 5.0, 5.0, viewport)
+    gluOrtho2D(0.0, 3.0, 0.0, 3.0)
+
+    
+    tiles = @board.tiles.values
+	glLoadName(1)
+    tiles.each_index { | i | 
+      glPushName(i)
+      draw_tile tiles[i]
+      glPopName()
+    }
+	glLoadName(2)
+    intersections = @board.intersections.values
+    intersections.each_index { | i | 
+      glPushName(i)
+      draw_intersection intersections[i] 
+      glPopName()
+    }
+	glLoadName(3)
+    paths = @board.paths.values
+    paths.each_index { | i | 
+      glPushName(i)
+      draw_path paths[i] 
+      glPopName()
+    }
+=end
+    glPopMatrix()
+    glMatrixMode(GL_PROJECTION)
+
+    glFlush()
+
+
+	hits = glRenderMode(GL_RENDER)
+    glutPostRedisplay()
+  end
+  
   def build_models
     # Setup an object for "points"
     startList = glGenLists(6)

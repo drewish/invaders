@@ -2,11 +2,6 @@ require 'opengl'
 include Gl,Glu,Glut
 
 require 'GameController'
-require 'Board'
-require 'BoardView'
-require 'TextView'
-
-
 
 #  Request double buffer display mode.
 glutInit
@@ -16,6 +11,8 @@ glutInitWindowPosition(0, 0)
 glutCreateWindow($0)
 
 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+glDepthFunc(GL_LESS)
+glEnable(GL_DEPTH_TEST)
 glEnable(GL_BLEND)
 glEnable(GL_LINE_SMOOTH)
 glEnable(GL_POLYGON_SMOOTH)
