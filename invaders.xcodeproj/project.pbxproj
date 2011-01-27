@@ -8,25 +8,29 @@
 
 /* Begin PBXFileReference section */
 		5F30F12912EBFF9F00CCF439 /* BoardView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = BoardView.rb; sourceTree = "<group>"; };
-		5F30F17C12EC03FE00CCF439 /* GameControler.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GameControler.rb; sourceTree = "<group>"; };
 		5F30F23C12ECADCD00CCF439 /* Board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Board.rb; sourceTree = "<group>"; };
 		5F30F23D12ECADCD00CCF439 /* Path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Path.rb; sourceTree = "<group>"; };
 		5F30F23E12ECADCD00CCF439 /* Player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Player.rb; sourceTree = "<group>"; };
 		5F30F23F12ECADCD00CCF439 /* Tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Tile.rb; sourceTree = "<group>"; };
 		5F30F25912ECB20D00CCF439 /* Intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Intersection.rb; sourceTree = "<group>"; };
+		5F30F40B12F1F84200CCF439 /* main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = main.rb; sourceTree = "<group>"; };
+		5F30F40C12F1F84B00CCF439 /* GameController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GameController.rb; sourceTree = "<group>"; };
+		5F30F40D12F1F85600CCF439 /* TextView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TextView.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		5F66A44912E8FD7F00DB0A39 = {
 			isa = PBXGroup;
 			children = (
-				5F30F25912ECB20D00CCF439 /* Intersection.rb */,
-				5F30F23C12ECADCD00CCF439 /* Board.rb */,
-				5F30F23D12ECADCD00CCF439 /* Path.rb */,
-				5F30F23E12ECADCD00CCF439 /* Player.rb */,
-				5F30F23F12ECADCD00CCF439 /* Tile.rb */,
-				5F30F17C12EC03FE00CCF439 /* GameControler.rb */,
+				5F30F40B12F1F84200CCF439 /* main.rb */,
+				5F30F40C12F1F84B00CCF439 /* GameController.rb */,
 				5F30F12912EBFF9F00CCF439 /* BoardView.rb */,
+				5F30F40D12F1F85600CCF439 /* TextView.rb */,
+				5F30F23C12ECADCD00CCF439 /* Board.rb */,
+				5F30F23E12ECADCD00CCF439 /* Player.rb */,
+				5F30F25912ECB20D00CCF439 /* Intersection.rb */,
+				5F30F23D12ECADCD00CCF439 /* Path.rb */,
+				5F30F23F12ECADCD00CCF439 /* Tile.rb */,
 			);
 			sourceTree = "<group>";
 		};
