@@ -1,4 +1,8 @@
+require "Selectable.rb"
+
 class Path
+  include Selectable
+
   attr_accessor :owner, :spots
   
   def initialize(left, right)

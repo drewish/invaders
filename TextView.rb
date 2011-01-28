@@ -2,7 +2,7 @@ class TextView
   def initialize(text)
     @text = text
   end
-
+  
   def draw
     glClearColor(0, 0, 0, 0)
 
@@ -55,7 +55,7 @@ class TextView
   # pickRects() sets up selection mode, name stack, 
   # and projection matrix for picking.  Then the objects 
   # are drawn.
-  def selected(x, y)
+  def detect_selection(x, y)
     viewport = glGetDoublev(GL_VIEWPORT)
     
     selectBuf = glSelectBuffer(512)
@@ -96,5 +96,6 @@ class TextView
           end
           printf("\n")
       end
+      []
   end
 end

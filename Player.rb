@@ -13,7 +13,7 @@ class Player
   end
 
   def inspect
-    @color + " " + @resources
+    "color: #{@color}\nresources: #{@resources}"
   end
 
   def pay_for(type)

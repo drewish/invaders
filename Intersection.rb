@@ -1,4 +1,8 @@
+require "Selectable.rb"
+
 class Intersection
+  include Selectable
+  
   attr_reader(:owner, :type, :rgb)
   attr_accessor(:road)
   

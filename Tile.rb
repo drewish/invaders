@@ -1,5 +1,9 @@
+require "Selectable.rb"
+
 # A view into the board.
 class Tile
+  include Selectable
+
   attr_accessor :intersections, :paths
   attr_reader :rgb, :type, :roll
 
