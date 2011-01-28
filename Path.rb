@@ -1,6 +1,9 @@
-require "Selectable.rb"
+require "observer"
+
+require "Selectable"
 
 class Path
+  include Observable
   include Selectable
 
   attr_accessor :owner, :spots
@@ -12,8 +15,13 @@ class Path
   end
   
   def build(owner)
+    raise ArgumentError, 'Must specify an owner' unless owner
+    
     if @owner.nil? and owner.pay_for :road
+      changed
       @owner = owner
     end
+    
+    notify_observers :built
   end
 end

@@ -1,6 +1,9 @@
-require "Selectable.rb"
+require "observer"
+
+require "Selectable"
 
 class Intersection
+  include Observable
   include Selectable
   
   attr_reader(:owner, :type, :rgb)
@@ -18,17 +21,27 @@ class Intersection
   end
 
   def build(owner)
+    raise ArgumentError, 'Must specify an owner' unless owner
+    
     # TODO: test for distance rule
     # TODO: test for road connection (after game setup)
     if @owner.nil? and owner.pay_for :settlement
       @owner = owner
       @type = :settlement
+
+      changed
     end
+    
+    notify_observers :built
   end
   
   def upgrade
     if @type == :settlement and @owner.pay_for :city
       @type = :city
+      
+      changed
     end
+    
+    notify_observers :upgraded
   end
 end

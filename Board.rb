@@ -1,3 +1,5 @@
+require "observer"
+
 require "Player"
 require "Tile"
 require "Intersection"
@@ -5,6 +7,8 @@ require "Path"
 
 
 class Board
+  include Observable
+
   def self.key(r, g, b)
     return "#{r}#{g}#{b}"
   end

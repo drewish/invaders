@@ -1,7 +1,9 @@
-require "Selectable.rb"
+require "observer"
 
-# A view into the board.
+require "Selectable"
+
 class Tile
+  include Observable
   include Selectable
 
   attr_accessor :intersections, :paths
