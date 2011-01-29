@@ -22,6 +22,6 @@ class Path
       @owner = owner
     end
     
-    notify_observers :built
+    notify_observers self, :built
   end
 end

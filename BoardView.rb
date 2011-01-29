@@ -16,6 +16,10 @@ class BoardView
 
     @render_list.each { | obj | render obj }
   end
+  
+  def update(noun, verb)
+    glutPostRedisplay()
+  end
 
   # pickRects() sets up selection mode, name stack,
   # and projection matrix for picking.  Then the objects

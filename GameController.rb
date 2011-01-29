@@ -59,13 +59,34 @@ class GameSetupState
   def initialize(owner)
     @owner = owner
 
+    # Two ways to roll 3-6 and 8-11, omitting 7 since desert is a special case.
+    tile_rolls = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12].sort_by { rand }
+    tile_types = [
+      :brick, :brick, :brick,
+      :ore, :ore, :ore,
+      :grain, :grain, :grain, :grain,
+      :lumber, :lumber, :lumber, :lumber, 
+      :wool, :wool, :wool, :wool
+    ].sort_by { rand }
+
+    tile_settings = [ {:type => :desert, :roll => 7} ]
+    (0...18).each do | i |
+      tile_settings << {:type => tile_types[i], :roll => tile_rolls[i]} 
+    end
+    tile_settings = tile_settings.sort_by { rand }
+
+    @owner.board.tiles.each do | key, tile | 
+      settings = tile_settings.pop
+      tile.type, tile.roll = settings[:type], settings[:roll]
+    end
+
     # TODO: consult rules for picking first player which would affect order of @players.
     players = @owner.board.players.values
     @player = nil
     # Everyone gets two turns: first to last then last to first.
     @turns_remaining = players + players.reverse
     @last_piece = nil
-        
+
     # Titles aren't selectable in this phase.
     @owner.board.tiles.each_value { | item | item.selectable = false }
 
@@ -204,8 +225,6 @@ class GameController
 
   def process_keyboard(key, x, y)
     @state.process_keyboard key, x, y
-#    @view.detect_selection x, y
-    glutPostRedisplay()
   end
 
   def process_mouse(button, state, x, y)
@@ -219,6 +238,5 @@ class GameController
         when GLUT_RIGHT_BUTTON
       end
     end
-    glutPostRedisplay()
   end
 end

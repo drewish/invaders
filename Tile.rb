@@ -9,15 +9,35 @@ class Tile
   attr_accessor :intersections, :paths
   attr_reader :rgb, :type, :roll
 
-  def initialize(board, rgb, type, roll)
+  def initialize(board, rgb)
     @board = board
     @rgb = rgb
     @intersections = {:n => nil, :nw => nil, :sw => nil, :s => nil, :se => nil, :ne => nil }
     @paths = {:nw => nil, :w => nil, :sw => nil, :se => nil, :e => nil, :ne => nil }
-    @type = type
-    @roll = roll
+    @type = nil
+    @roll = 0
   end
   
+  def inspect
+    "Tile #{@rgb} #{@type} #{@roll}"
+  end
+  
+  def type=(value)
+    return if @type == value
+    
+    changed
+    @type = value
+    notify_observers self, :changed
+  end
+  
+  def roll=(value)
+    return if @roll == value
+    
+    changed
+    @roll = value
+    notify_observers self, :changed
+  end
+
   def color
     case @type
     when :brick

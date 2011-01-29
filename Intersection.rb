@@ -32,7 +32,7 @@ class Intersection
       changed
     end
     
-    notify_observers :built
+    notify_observers self, :built
   end
   
   def upgrade
@@ -42,6 +42,6 @@ class Intersection
       changed
     end
     
-    notify_observers :upgraded
+    notify_observers self, :upgraded
   end
 end
