@@ -12,7 +12,7 @@ class BoardView < BaseView
     super
     @board = board
     @board.add_observer(self)
-    
+
     @board.tiles.each_value { | o | @render_list << TileView.new(o) }
     @board.intersections.each_value { | o | @render_list << IntersectionView.new(o) }
     @board.paths.each_value { | o | @render_list << PathView.new(o) }

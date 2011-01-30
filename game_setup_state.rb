@@ -1,6 +1,9 @@
+require 'board_view'
+
 class GameSetupState
   def initialize(owner)
     @owner = owner
+    @owner.view = BoardView.new(@owner.board)
 
     # Two ways to roll 3-6 and 8-11, omitting 7 since desert is a special case.
     tile_rolls = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12].sort_by { rand }

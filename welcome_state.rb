@@ -1,9 +1,9 @@
-require 'text_view'
+require 'welcome_view'
 
 class WelcomeState
   def initialize(owner)
     @owner = owner
-    @owner.view = TextView.new "welcome to invaders"
+    @owner.view = WelcomeView.new
   end
 
   def process_selection(focus)

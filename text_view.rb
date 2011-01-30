@@ -1,19 +1,89 @@
 require 'base_view'
+require 'selectable'
+
+class Text
+  def initialize(text, x, y)
+    @text, @x, @y = text, x, y
+    @text_color = [1,1,1]
+    @background_color = nil
+    @selectable = true
+  end
+
+  def render
+    glPushMatrix()
+    
+    width = @text.each_byte.inject(0) do | memo, c|
+      memo + glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c)
+    end
+    width *= 0.01
+
+    glTranslate(@x, @y, 0.0)
+
+    # Background
+    if @background_color
+      glBegin(GL_QUADS)
+      glColor(*@background_color)
+      glVertex(width, 1, 0)
+      glVertex(-width, 1, 0)
+      glVertex(-width, -1, 0)
+      glVertex(width, -1, 0)
+      glEnd()
+    end
+    
+    # Text
+    glColor(*@text_color)
+    glRasterPos3f(-width / 2, -0.15, 0);
+    @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+
+    glPopMatrix()  
+  end
+end
+
+class Button
+  include Selectable
+
+  def initialize(text, x, y)
+    @text, @x, @y = text, x, y
+    @text_color = [1,1,1]
+    @background_color = [0,1,1]
+    @selectable = true
+  end
+
+  def render
+    glPushMatrix()
+    
+    width = @text.each_byte.inject(0) do | memo, c|
+      memo + glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c)
+    end
+    width *= 0.1
+
+    glTranslate(@x, @y, 0.0)
+
+    # Background
+    glBegin(GL_QUADS)
+    glColor(*@background_color)
+    glVertex(width, 1, 0)
+    glVertex(-width, 1, 0)
+    glVertex(-width, -1, 0)
+    glVertex(width, -1, 0)
+    glEnd()
+
+    # Text
+    glColor(*@text_color)
+    glRasterPos3f(-width / 2, -0.15, 0);
+    @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+
+    glPopMatrix()  
+  end
+end
 
 class TextView < BaseView
   def initialize(text)
     super
     @text = text
+    @render_list << Button.new(text, 0, 0)
   end
   
-  def draw
-    drawRects(GL_RENDER)
-
-    glColor(1, 1, 1)
-    glRasterPos3f(0, 0, 0);
-    @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
-  end
-
   # The three rectangles are drawn.  In selection mode, 
   # each rectangle is given the same name.  Note that 
   # each rectangle is drawn with a different z value.
@@ -50,32 +120,5 @@ class TextView < BaseView
     glVertex(5, 7, -2)
     glVertex(5, 2, -2)
     glEnd()
-  end
-
-  # pickRects() sets up selection mode, name stack, 
-  # and projection matrix for picking.  Then the objects 
-  # are drawn.
-  def detect_selection(x, y)
-    viewport = glGetDoublev(GL_VIEWPORT)
-    
-    selectBuf = glSelectBuffer(512)
-    glRenderMode(GL_SELECT)
-    
-    glInitNames()
-    glPushName(~0)
-    
-    glMatrixMode(GL_PROJECTION)
-    glPushMatrix()
-    glLoadIdentity()
-    # create 5x5 pixel picking region near cursor location
-    gluPickMatrix( x, viewport[3] - y, 10.0, 10.0, viewport)
-    glOrtho(-10.0, 10.0, -10.0, 10.0, -0.5, 2.5)
-    
-    drawRects(GL_SELECT)
-    glPopMatrix()
-    glFlush()
-    
-    hits = glRenderMode(GL_RENDER)
-    processHits(hits, selectBuf)
   end
 end

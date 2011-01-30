@@ -1,3 +1,87 @@
+require 'selectable'
+
+class Text
+  attr_reader :text
+  attr_accessor :background_color, :text_color
+  
+  def initialize(text, x, y)
+    @text, @x, @y = text, x, y
+    @text_color = [1,1,1]
+    @background_color = nil
+    @selectable = true
+  end
+
+  def render
+    glPushMatrix()
+    
+    width = @text.each_byte.inject(0) do | memo, c|
+      memo + glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c)
+    end
+    width *= 0.01
+
+    glTranslate(@x, @y, 0.0)
+
+    # Background
+    if @background_color
+      glBegin(GL_QUADS)
+      glColor(*@background_color)
+      glVertex(width, 1, 0)
+      glVertex(-width, 1, 0)
+      glVertex(-width, -1, 0)
+      glVertex(width, -1, 0)
+      glEnd()
+    end
+    
+    # Text
+    glColor(*@text_color)
+    glRasterPos3f(-width / 2, -0.15, 0);
+    @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+
+    glPopMatrix()  
+  end
+end
+
+class Button
+  include Selectable
+
+  attr_reader :text
+  attr_accessor :background_color, :text_color
+
+  def initialize(text, x, y)
+    @text, @x, @y = text, x, y
+    @text_color = [1,1,1]
+    @background_color = [0,1,1]
+    @selectable = true
+  end
+
+  def render
+    glPushMatrix()
+    
+    width = @text.each_byte.inject(0) do | memo, c|
+      memo + glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c)
+    end
+    width *= 0.1
+
+    glTranslate(@x, @y, 0.0)
+
+    # Background
+    glBegin(GL_QUADS)
+    glColor(*@background_color)
+    glVertex(width, 1, 0)
+    glVertex(-width, 1, 0)
+    glVertex(-width, -1, 0)
+    glVertex(width, -1, 0)
+    glEnd()
+
+    # Text
+    glColor(*@text_color)
+    glRasterPos3f(-width / 2, -0.15, 0);
+    @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+
+    glPopMatrix()  
+  end
+end
+
 class BaseView
   attr_accessor :model, :render_list, :background_color
 
@@ -12,12 +96,13 @@ class BaseView
     glutPostRedisplay()
   end
 
-  def draw
+  # Render is called by draw and detect_selection.
+  def render
     glClearColor(*@background_color)
-    @render_list.each { | obj | obj.render }
+    @render_list.each { | o | o.render }
   end
 
-  def render
+  def draw
     glClearColor(*@background_color)
     @render_list.each { | o | o.render }
   end
@@ -44,7 +129,9 @@ class BaseView
 
     # Determine what can be selected, render those items using the array index 
     # as their names.
-    selectable = @render_list.select { | item | item.selectable }
+    selectable = @render_list.select do | item | 
+      item.kind_of?(Selectable) && item.selectable
+    end
     selectable.each_index do | i |
       glLoadName(i)
       selectable[i].render
@@ -57,7 +144,9 @@ class BaseView
     selected_name_stacks = processHits(hits, selectBuf)
     
     # Clear the selected list.
-    @render_list.each { | item | item.selected = false }
+    @render_list.each do | item | 
+      item.selected = false if item.kind_of?(Selectable)
+    end
     # Look up what was selected out of what was selectable.
     selected = []
     selected_name_stacks.each do | name_stack |
