@@ -1,4 +1,4 @@
-require 'TextView'
+require 'text_view'
 
 class WelcomeState
   def initialize(owner)

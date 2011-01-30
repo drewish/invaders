@@ -1,6 +1,7 @@
 require 'opengl'
 include Gl,Glu,Glut
 
+require 'board'
 require 'base_view'
 require 'intersection_view'
 require 'path_view'

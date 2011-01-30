@@ -1,7 +1,7 @@
 require 'opengl'
 include Gl,Glu,Glut
 
-require 'GameController'
+require "game_controller"
 
 #  Request double buffer display mode.
 glutInit

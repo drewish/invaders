@@ -1,10 +1,9 @@
-require "observer"
+require 'observer'
 
-require "Player"
-require "Tile"
-require "Intersection"
-require "Path"
-
+require 'player'
+require 'tile'
+require 'intersection'
+require 'path'
 
 class Board
   include Observable

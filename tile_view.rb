@@ -1,5 +1,5 @@
 require 'base_view'
-require 'Selectable'
+require 'selectable'
 
 class TileView < BaseView
   include Selectable

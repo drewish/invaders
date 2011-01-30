@@ -1,10 +1,6 @@
 require 'opengl'
 include Gl,Glu,Glut
 
-require 'Board'
-require 'BoardView'
-require 'TextView'
-
 require 'welcome_state'
 require 'game_create_state'
 require 'game_setup_state'

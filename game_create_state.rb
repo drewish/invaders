@@ -1,4 +1,4 @@
-require 'BoardView'
+require 'board_view'
 
 class GameCreateState
   def initialize(owner)

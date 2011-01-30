@@ -1,4 +1,4 @@
-require "observer"
+require 'observer'
 
 class Tile
   include Observable
