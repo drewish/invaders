@@ -31,17 +31,15 @@ class GameSetupState
     @turns_remaining = players + players.reverse
     @last_piece = nil
 
-    # Titles aren't selectable in this phase.
-    @owner.board.tiles.each_value { | item | item.selectable = false }
+    # Make every thing unselectable at this point.
+    @owner.view.render_list.each { | item | item.selectable = false }
 
     advance_turn
   end
 
   def advance_turn()
-#puts "advancing the turn\n\n"
-#puts @turns_remaining
     # Figure out what we should be doing in this part of the turn. 
-#puts "last piece: " + @last_piece.to_s
+puts "last piece: " + @last_piece.to_s
     if @last_piece == nil || @last_piece.kind_of?(Path)
       if @turns_remaining.count == 0
         @owner.state = GamePlayState.new @owner
@@ -53,23 +51,24 @@ class GameSetupState
       type_of_next_piece = :path
     end
 
-    # Determine selectable list (first half of the turn is picking an 
+    # @TODO Determine selectable list (first half of the turn is picking an 
     # intersection then a path).
     # - unsettled intersections, where all adjacent intersections are unsettled.
     # - unsettled paths adjacent to last settlement built.
-    
-    @owner.board.paths.each_value do | item |
-      item.selectable = (:path == type_of_next_piece)
-    end
-    @owner.board.intersections().each_value do | item |
-      item.selectable = (:intersection == type_of_next_piece)
+    @owner.view.render_list.each do | item |
+      case item
+      when IntersectionView
+        item.selectable = (:intersection == type_of_next_piece)
+      when PathView
+        item.selectable = (:path == type_of_next_piece)
+      end
     end
   end
 
   def process_selection(focus)
     # TODO: Confirm their selection.
-    focus.build @player
-    @last_piece = focus
+    focus.model.build @player
+    @last_piece = focus.model
     advance_turn
   end
 

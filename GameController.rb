@@ -12,7 +12,8 @@ require 'game_play_state'
 require 'game_summary_state'
 
 class GameController
-  attr_accessor :state, :board, :view
+  attr_reader :state
+  attr_accessor :board, :view
 
   def initialize
     @view = nil
@@ -20,8 +21,15 @@ class GameController
     @state = WelcomeState.new self
   end
 
+  def state=(value)
+    @state = value
+    # Make sure the new state has a chance to draw.
+    glutPostRedisplay()
+  end
+
   def draw
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+puts @view.inspect
     @view.draw
     glutSwapBuffers()
   end

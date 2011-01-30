@@ -87,16 +87,5 @@ class Board
         tile.paths[path_direction] = @paths[key]
       end
     end
-    
-    # Observe children for changes
-    @tiles.each_value { | o | o.add_observer(self) }
-    @paths.each_value { | o | o.add_observer(self) }
-    @intersections.each_value { | o | o.add_observer(self) }          
-  end
-  
-  # Chain updates.
-  def update(noun, verb)
-    changed
-    notify_observers self, :changed
   end
 end

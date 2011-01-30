@@ -1,18 +1,18 @@
-class TextView
+require 'base_view'
+
+class TextView < BaseView
   def initialize(text)
+    super
     @text = text
   end
   
   def draw
-    glClearColor(0, 0, 0, 0)
-
     drawRects(GL_RENDER)
 
     glColor(1, 1, 1)
     glRasterPos3f(0, 0, 0);
     @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
   end
-    
 
   # The three rectangles are drawn.  In selection mode, 
   # each rectangle is given the same name.  Note that 
@@ -77,25 +77,5 @@ class TextView
     
     hits = glRenderMode(GL_RENDER)
     processHits(hits, selectBuf)
-  end
-
-  # processHits() prints out the contents of the 
-  # selection array.
-  def processHits(hits, buffer)
-      printf("hits = %d\n", hits)
-      ptr = buffer.unpack("I*")
-      p = 0
-      for i in 0...hits 	# for each hit
-          names = ptr[p]
-          printf(" number of names for hit = %d\n", names); p+=1
-          printf("  z1 is %g",  ptr[p].to_f/0xffffffff); p+=1
-          printf(" z2 is %g\n",  ptr[p].to_f/0xffffffff); p+=1
-          printf("   the name is ")
-          for j in 0...names  # for each name
-              printf("%d ", ptr[p]) ; p+=1
-          end
-          printf("\n")
-      end
-      []
   end
 end
