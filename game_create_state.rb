@@ -1,3 +1,5 @@
+require 'BoardView'
+
 class GameCreateState
   def initialize(owner)
     @owner = owner

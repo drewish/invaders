@@ -1,10 +1,7 @@
 require "observer"
 
-require "Selectable"
-
 class Path
   include Observable
-  include Selectable
 
   attr_accessor :owner, :spots
   
@@ -12,6 +9,14 @@ class Path
     @owner = nil
     @spots = [left, right]
     @spots.each { |spot| spot.road = self }
+  end
+
+  def inspect
+    if @owner 
+      "<Path owned by #{@owner}>"
+    else
+      "<Path unowned>"
+    end
   end
   
   def build(owner)

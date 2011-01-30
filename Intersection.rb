@@ -1,10 +1,7 @@
 require "observer"
 
-require "Selectable"
-
 class Intersection
   include Observable
-  include Selectable
   
   attr_reader(:owner, :type, :rgb)
   attr_accessor(:road)
@@ -13,6 +10,14 @@ class Intersection
     @rgb = rgb
     @owner = nil
     @type = :unsettled
+  end
+  
+  def inspect
+    if @owned
+      "<Intersection (#{@type}) owned by #{@owner}>"
+    else
+      "<Intersection, unowned>"
+    end
   end
   
   def <=> (o)

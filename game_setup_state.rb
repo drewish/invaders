@@ -1,4 +1,3 @@
-
 class GameSetupState
   def initialize(owner)
     @owner = owner

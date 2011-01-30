@@ -1,3 +1,5 @@
+require 'TextView'
+
 class WelcomeState
   def initialize(owner)
     @owner = owner

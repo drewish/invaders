@@ -1,10 +1,7 @@
 require "observer"
 
-require "Selectable"
-
 class Tile
   include Observable
-  include Selectable
 
   attr_accessor :intersections, :paths
   attr_reader :rgb, :type, :roll
@@ -19,7 +16,7 @@ class Tile
   end
   
   def inspect
-    "Tile #{@rgb} #{@type} #{@roll}"
+    "<Tile #{@rgb} #{@type} #{@roll}>"
   end
   
   def type=(value)
