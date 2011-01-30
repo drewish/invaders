@@ -3,19 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXFileReference section */
-		5F30F12912EBFF9F00CCF439 /* BoardView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = BoardView.rb; sourceTree = "<group>"; };
-		5F30F23C12ECADCD00CCF439 /* Board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Board.rb; sourceTree = "<group>"; };
-		5F30F23D12ECADCD00CCF439 /* Path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Path.rb; sourceTree = "<group>"; };
-		5F30F23E12ECADCD00CCF439 /* Player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Player.rb; sourceTree = "<group>"; };
-		5F30F23F12ECADCD00CCF439 /* Tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Tile.rb; sourceTree = "<group>"; };
-		5F30F25912ECB20D00CCF439 /* Intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Intersection.rb; sourceTree = "<group>"; };
 		5F30F40B12F1F84200CCF439 /* main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = main.rb; sourceTree = "<group>"; };
-		5F30F40C12F1F84B00CCF439 /* GameController.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = GameController.rb; sourceTree = "<group>"; };
-		5F30F40D12F1F85600CCF439 /* TextView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TextView.rb; sourceTree = "<group>"; };
+		5F30F77B12F4D0A500CCF439 /* welcome_state.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = welcome_state.rb; sourceTree = "<group>"; };
+		5F30F77D12F4D16200CCF439 /* game_setup_state.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_setup_state.rb; sourceTree = "<group>"; };
+		5F30F77E12F4D18000CCF439 /* game_create_state.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_create_state.rb; sourceTree = "<group>"; };
+		5F30F77F12F4D1AF00CCF439 /* game_play_state.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_play_state.rb; sourceTree = "<group>"; };
+		5F30F78012F4D1BC00CCF439 /* game_summary_state.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_summary_state.rb; sourceTree = "<group>"; };
+		5F30F79C12F4D62C00CCF439 /* base_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = base_view.rb; sourceTree = "<group>"; };
+		5F30F94312F529F800CCF439 /* intersection_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = intersection_view.rb; sourceTree = "<group>"; };
+		5F30F94412F529F800CCF439 /* path_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = path_view.rb; sourceTree = "<group>"; };
+		5F30F94F12F52A1700CCF439 /* tile_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tile_view.rb; sourceTree = "<group>"; };
+		5F30F97112F52F4F00CCF439 /* board.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = board.rb; sourceTree = "<group>"; };
+		5F30F97312F52F4F00CCF439 /* contains_selectable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = contains_selectable.rb; sourceTree = "<group>"; };
+		5F30F97412F52F4F00CCF439 /* intersection.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = intersection.rb; sourceTree = "<group>"; };
+		5F30F97512F52F4F00CCF439 /* path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = path.rb; sourceTree = "<group>"; };
+		5F30F97612F52F4F00CCF439 /* player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = player.rb; sourceTree = "<group>"; };
+		5F30F97712F52F4F00CCF439 /* selectable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = selectable.rb; sourceTree = "<group>"; };
+		5F30F97812F52F4F00CCF439 /* text_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = text_view.rb; sourceTree = "<group>"; };
+		5F30F97912F52F4F00CCF439 /* tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tile.rb; sourceTree = "<group>"; };
+		5F30F97A12F52F8A00CCF439 /* game_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_controller.rb; sourceTree = "<group>"; };
+		5F30F98912F531E600CCF439 /* board_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = board_view.rb; sourceTree = "<group>"; };
+		5F30FA4512F5466400CCF439 /* welcome_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = welcome_view.rb; sourceTree = "<group>"; };
+		5F30FA4612F5469300CCF439 /* game_create_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_create_view.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -23,14 +36,27 @@
 			isa = PBXGroup;
 			children = (
 				5F30F40B12F1F84200CCF439 /* main.rb */,
-				5F30F40C12F1F84B00CCF439 /* GameController.rb */,
-				5F30F12912EBFF9F00CCF439 /* BoardView.rb */,
-				5F30F40D12F1F85600CCF439 /* TextView.rb */,
-				5F30F23C12ECADCD00CCF439 /* Board.rb */,
-				5F30F23E12ECADCD00CCF439 /* Player.rb */,
-				5F30F25912ECB20D00CCF439 /* Intersection.rb */,
-				5F30F23D12ECADCD00CCF439 /* Path.rb */,
-				5F30F23F12ECADCD00CCF439 /* Tile.rb */,
+				5F30F97A12F52F8A00CCF439 /* game_controller.rb */,
+				5F30F77B12F4D0A500CCF439 /* welcome_state.rb */,
+				5F30FA4512F5466400CCF439 /* welcome_view.rb */,
+				5F30F77E12F4D18000CCF439 /* game_create_state.rb */,
+				5F30FA4612F5469300CCF439 /* game_create_view.rb */,
+				5F30F77D12F4D16200CCF439 /* game_setup_state.rb */,
+				5F30F77F12F4D1AF00CCF439 /* game_play_state.rb */,
+				5F30F78012F4D1BC00CCF439 /* game_summary_state.rb */,
+				5F30F79C12F4D62C00CCF439 /* base_view.rb */,
+				5F30F97112F52F4F00CCF439 /* board.rb */,
+				5F30F98912F531E600CCF439 /* board_view.rb */,
+				5F30F97312F52F4F00CCF439 /* contains_selectable.rb */,
+				5F30F97412F52F4F00CCF439 /* intersection.rb */,
+				5F30F94312F529F800CCF439 /* intersection_view.rb */,
+				5F30F97512F52F4F00CCF439 /* path.rb */,
+				5F30F94412F529F800CCF439 /* path_view.rb */,
+				5F30F97612F52F4F00CCF439 /* player.rb */,
+				5F30F97712F52F4F00CCF439 /* selectable.rb */,
+				5F30F97912F52F4F00CCF439 /* tile.rb */,
+				5F30F94F12F52A1700CCF439 /* tile_view.rb */,
+				5F30F97812F52F4F00CCF439 /* text_view.rb */,
 			);
 			sourceTree = "<group>";
 		};
@@ -39,7 +65,7 @@
 /* Begin PBXLegacyTarget section */
 		5F66A46912E8FE8100DB0A39 /* Call ruby */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = " -rubygems GameControler.rb";
+			buildArgumentsString = " -rubygems main.rb";
 			buildConfigurationList = 5F66A46C12E8FE9F00DB0A39 /* Build configuration list for PBXLegacyTarget "Call ruby" */;
 			buildPhases = (
 			);
@@ -57,7 +83,7 @@
 		5F66A44B12E8FD7F00DB0A39 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 5F66A44E12E8FD7F00DB0A39 /* Build configuration list for PBXProject "invaders" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
