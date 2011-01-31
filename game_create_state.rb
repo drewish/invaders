@@ -19,23 +19,23 @@ class GameCreateState
     when "Exit"
       @owner.state = WelcomeState.new @owner
     end
-puts focus
   end
 
   def process_keyboard(key, x, y)
     players = {}
     case (key)
-    when ?\e
-      @owner.state = WelcomeState.new @owner
     when ?2
       choose_players(2)
     when ?3
       choose_players(3)
     when ?4
       choose_players(4)
+    # Escape or Q returns to title screen.
+    when ?\e, ?q
+      @owner.state = WelcomeState.new @owner
     end
   end
-  
+
   def choose_players(count)
     players = {:red => [1, 0, 0], :blue => [0, 0, 1]}
     if count > 2

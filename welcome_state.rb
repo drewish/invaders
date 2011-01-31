@@ -12,10 +12,12 @@ class WelcomeState
 
   def process_keyboard(key, x, y)
     case (key)
-    when ?\e
-      exit(0)
-    else
+    # Space or enter advances.
+    when ?\s, ?\n
       @owner.state = GameCreateState.new @owner
+    # Escape or Q quits.
+    when ?\e, ?q
+      exit(0)
     end
   end
 end

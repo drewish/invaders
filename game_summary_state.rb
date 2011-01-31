@@ -8,9 +8,9 @@ class GameSummaryState
   end
 
   def process_keyboard(key, x, y)
-    # FIXME: Just let them exit for now.
     case (key)
-    when ?\e
+    # Escape or Q returns to title screen.
+    when ?\e, ?q
       @owner.state = WelcomeState.new @owner
     end
   end
