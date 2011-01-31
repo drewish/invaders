@@ -18,12 +18,9 @@ class Board
     @tiles = {}
     @intersections = {}
     @paths = {}
-    @players = {}
+    @players = players
+    @active_player = @players.first
     @resources = {:brick => 19, :grain => 19, :lumber => 19, :ore => 19, :wool => 19}
-
-    players.each do | name, color|
-      @players[name] = Player.new(self, name, color)
-    end
 
     # I'm use a hex grid coordinate system described here:
     #  http://www-cs-students.stanford.edu/~amitp/Articles/Hexagon2.html
@@ -86,5 +83,18 @@ class Board
         tile.paths[path_direction] = @paths[key]
       end
     end
+  end
+  
+  def active_player=(value)
+    @players.each { | player | player.active = (player == value) }
+  end
+  
+  def active_player
+    @players.select { | player | player.active? }.first
+  end
+  
+  def next_player
+    index = @players.index(active_player) + 1 % (@players.count - 1)
+    @players[index]
   end
 end

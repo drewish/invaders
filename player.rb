@@ -14,6 +14,7 @@ class Player
   def initialize(board, name, color) 
     @board, @name, @color = board, name, color
     @resources = {:brick => 0, :grain => 0, :lumber => 0, :ore => 0, :wool => 0}
+    @active = false
   end
 
   def inspect
@@ -23,5 +24,17 @@ class Player
   def pay_for(type)
     puts "paying for " + type.to_s + "  " + COSTS[type].inspect
     COSTS[type]
+  end
+  
+  def active?
+    @active == true
+  end
+  
+  def active=(value)
+    return if @active == value
+
+    changed
+    @active = !!value
+    notify_observers self, :changed
   end
 end

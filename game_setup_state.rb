@@ -27,8 +27,7 @@ class GameSetupState
     end
 
     # TODO: consult rules for picking first player which would affect order of @players.
-    players = @owner.board.players.values
-    @player = nil
+    players = @owner.board.players
     # Everyone gets two turns: first to last then last to first.
     @turns_remaining = players + players.reverse
     @last_piece = nil
@@ -41,13 +40,12 @@ class GameSetupState
 
   def advance_turn()
     # Figure out what we should be doing in this part of the turn. 
-puts "last piece: " + @last_piece.to_s
     if @last_piece == nil || @last_piece.kind_of?(Path)
       if @turns_remaining.count == 0
         @owner.state = GamePlayState.new @owner
         return
       end
-      @player = @turns_remaining.shift
+      @owner.board.active_player = @turns_remaining.shift
       type_of_next_piece = :intersection
     else
       type_of_next_piece = :path
@@ -55,21 +53,21 @@ puts "last piece: " + @last_piece.to_s
 
     # @TODO Determine selectable list (first half of the turn is picking an 
     # intersection then a path).
-    # - unsettled intersections, where all adjacent intersections are unsettled.
-    # - unsettled paths adjacent to last settlement built.
     @owner.view.render_list.each do | item |
-      case item
+      item.selectable = case item
       when IntersectionView
-        item.selectable = (:intersection == type_of_next_piece)
+        # Unsettled intersections, where all adjacent intersections are unsettled.
+        type_of_next_piece == :intersection && !item.model.settled? && (item.model.adjacent_intersections.select { |i| i.settled? }.count == 0)
       when PathView
-        item.selectable = (:path == type_of_next_piece)
+        # Unsettled paths adjacent to last settlement built.
+        !item.model.settled? && item.model.intersections.include?(@last_piece)
       end
     end
   end
 
   def process_selection(focus)
     # TODO: Confirm their selection.
-    focus.model.build @player
+    focus.model.build @owner.board.active_player
     @last_piece = focus.model
     advance_turn
   end

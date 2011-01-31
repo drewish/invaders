@@ -20,7 +20,11 @@ class IntersectionView < BaseView
     
     case @intersection.type
     when :unsettled
-      glColor(0.8, 0.8, 0.8)
+      if selectable
+        glColor(0.6, 0.6, 0.6)
+      else
+        glColor(0.8, 0.8, 0.8)
+      end
       gluDisk(qobj, 0, 0.25, 6, 1)
 
     when :settlement

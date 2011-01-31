@@ -45,7 +45,7 @@ puts focus
       players[:yellow] = [1, 1, 0]
     end
 
-    @owner.board = Board.new(players)
+    @owner.board = Board.new(players.collect { | name, color | Player.new(self, name, color) })
     @owner.state = GameSetupState.new @owner
   end
 end

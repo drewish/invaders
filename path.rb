@@ -3,12 +3,12 @@ require 'observer'
 class Path
   include Observable
 
-  attr_accessor :owner, :spots
+  attr_accessor :owner, :intersections
   
   def initialize(left, right)
     @owner = nil
-    @spots = [left, right]
-    @spots.each { |spot| spot.road = self }
+    @intersections = [left, right]
+    @intersections.each { | intersection | intersection.paths << self }
   end
 
   def inspect
@@ -19,14 +19,31 @@ class Path
     end
   end
   
+  def settled?
+    !@owner.nil?
+  end
+  
+  def unsettled?
+    @owner.nil?
+  end
+
   def build(owner)
-    raise ArgumentError, 'Must specify an owner' unless owner
+    raise ArgumentError, 'Must specify an owner' if owner.nil?
     
-    if @owner.nil? and owner.pay_for :road
+    if unsettled? and owner.pay_for :road
       changed
       @owner = owner
     end
     
     notify_observers self, :built
+  end
+  
+  # Given an intersection return the other side of the path.
+  def follow_from(i)
+    if @intersections.include? i
+      @intersections[0] == i ? @intersections[1] : @intersections[0]
+    else
+      nil
+    end
   end
 end

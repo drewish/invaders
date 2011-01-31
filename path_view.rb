@@ -5,9 +5,11 @@ class PathView < BaseView
   include Selectable
 
   def initialize(model)
+    raise ArgumentError, 'Must specify a model' if model.nil?
+
     super
     @path = model
-    left, right = *@path.spots
+    left, right = *@path.intersections
     @theta = case
     when left.rgb[0] == right.rgb[0]
       60
@@ -28,10 +30,13 @@ class PathView < BaseView
     # of transformations is reversed.
     glTranslate((@x1 + @x2) / 2, (@y1 + @y2) / 2, 0.0)
     glRotate(@theta, 0, 0, 1)
-    if @path.owner === nil
-      glColor(0.8, 0.8, 0.8)
-    else
+    case 
+    when @path.owner
       glColor(*@path.owner.color)
+    when selectable
+      glColor(0.6, 0.6, 0.6)
+    else
+      glColor(0.8, 0.8, 0.8)
     end
     glBegin(GL_POLYGON)
     glVertex2f(0.5, 0.2); glVertex2f(0.5, -0.2)
