@@ -202,24 +202,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>5F30F91012F5267200CCF439</string>
+				<string>5F30FBFF12F668C800CCF439</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>base_view.rb</string>
+				<string>board.rb</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>5F30F91112F5267200CCF439</string>
+						<string>5F30FC0012F668C800CCF439</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>base_view.rb</string>
+						<string>board.rb</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5F30FAB612F5D10500CCF439</string>
+						<string>5F30FCE612F6B08400CCF439</string>
 						<key>history</key>
 						<array>
-							<string>5F30FA6D12F5478D00CCF439</string>
+							<string>5F30FC5412F671D000CCF439</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -235,31 +235,31 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>763 60 1026 1118 0 0 1920 1178 </string>
+				<string>15 60 1026 1118 0 0 1920 1178 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>5F30F9B312F53D0100CCF439</string>
+				<string>5F30FC7D12F677BF00CCF439</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>text_view.rb</string>
+				<string>game_play_state.rb</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>5F30F9B412F53D0100CCF439</string>
+						<string>5F30FC7E12F677BF00CCF439</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>text_view.rb</string>
+						<string>game_play_state.rb</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5F30FAB712F5D10500CCF439</string>
+						<string>5F30FCE712F6B08400CCF439</string>
 						<key>history</key>
 						<array>
-							<string>5F30F9A812F537E400CCF439</string>
+							<string>5F30FC7612F673F200CCF439</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -351,7 +351,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>22</integer>
+									<integer>24</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -393,7 +393,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>text_view.rb</string>
+								<string>dice_view.rb</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -401,38 +401,40 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>text_view.rb</string>
+										<string>dice_view.rb</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5F30FAB512F5D10500CCF439</string>
+										<string>5F30FCE512F6B08400CCF439</string>
 										<key>history</key>
 										<array>
 											<string>5F66A48312E8FF7800DB0A39</string>
 											<string>5F30F2E112ED0A6A00CCF439</string>
-											<string>5F30F98E12F531FA00CCF439</string>
-											<string>5F30F98F12F531FA00CCF439</string>
 											<string>5F30F9C012F53E4E00CCF439</string>
-											<string>5F30F9E812F5409E00CCF439</string>
-											<string>5F30F9E912F5409E00CCF439</string>
-											<string>5F30FA5212F5472000CCF439</string>
-											<string>5F30FA5312F5472000CCF439</string>
-											<string>5F30FA7512F5488C00CCF439</string>
-											<string>5F30FA7E12F5497500CCF439</string>
-											<string>5F30FA7F12F5497500CCF439</string>
-											<string>5F30FA8112F5497500CCF439</string>
-											<string>5F30FA8212F5497500CCF439</string>
-											<string>5F30FA8312F5497500CCF439</string>
 											<string>5F30FA8912F54AF500CCF439</string>
-											<string>5F30FA8B12F54AF500CCF439</string>
-											<string>5F30FA9412F54B1B00CCF439</string>
-											<string>5F30FA9912F54B8300CCF439</string>
-											<string>5F30FA9B12F54B8300CCF439</string>
-											<string>5F30FA9C12F54B8300CCF439</string>
-											<string>5F30FAA312F54D8200CCF439</string>
-											<string>5F30FAB112F5D10500CCF439</string>
-											<string>5F30FAB212F5D10500CCF439</string>
-											<string>5F30FAB412F5D10500CCF439</string>
+											<string>5F30FABB12F5D2BF00CCF439</string>
+											<string>5F30FAF312F5D79500CCF439</string>
+											<string>5F30FBAC12F6572500CCF439</string>
+											<string>5F30FBAF12F6572500CCF439</string>
+											<string>5F30FC3912F670DF00CCF439</string>
+											<string>5F30FC3A12F670DF00CCF439</string>
+											<string>5F30FC3B12F670DF00CCF439</string>
+											<string>5F30FC4712F6719A00CCF439</string>
+											<string>5F30FC5B12F6728F00CCF439</string>
+											<string>5F30FC7012F6731C00CCF439</string>
+											<string>5F30FC7112F6731C00CCF439</string>
+											<string>5F30FC7212F6731C00CCF439</string>
+											<string>5F30FC8512F67A9900CCF439</string>
+											<string>5F30FC8D12F6A11700CCF439</string>
+											<string>5F30FC9312F6AC3100CCF439</string>
+											<string>5F30FC9C12F6AE0000CCF439</string>
+											<string>5F30FCA812F6AF3F00CCF439</string>
+											<string>5F30FCAA12F6AF3F00CCF439</string>
+											<string>5F30FCBC12F6AF9C00CCF439</string>
+											<string>5F30FCC212F6AFBD00CCF439</string>
+											<string>5F30FCC312F6AFBD00CCF439</string>
+											<string>5F30FCDA12F6B04B00CCF439</string>
+											<string>5F30FCDB12F6B04B00CCF439</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -631,8 +633,8 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>5F66A47512E8FEED00DB0A39</string>
-		<string>5F30F9B312F53D0100CCF439</string>
-		<string>5F30F91012F5267200CCF439</string>
+		<string>5F30FC7D12F677BF00CCF439</string>
+		<string>5F30FBFF12F668C800CCF439</string>
 		<string>/Users/amorton/projects/invaders/invaders.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

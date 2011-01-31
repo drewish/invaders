@@ -23,12 +23,14 @@
 		5F30F97512F52F4F00CCF439 /* path.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = path.rb; sourceTree = "<group>"; };
 		5F30F97612F52F4F00CCF439 /* player.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = player.rb; sourceTree = "<group>"; };
 		5F30F97712F52F4F00CCF439 /* selectable.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = selectable.rb; sourceTree = "<group>"; };
-		5F30F97812F52F4F00CCF439 /* text_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = text_view.rb; sourceTree = "<group>"; };
 		5F30F97912F52F4F00CCF439 /* tile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tile.rb; sourceTree = "<group>"; };
 		5F30F97A12F52F8A00CCF439 /* game_controller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_controller.rb; sourceTree = "<group>"; };
 		5F30F98912F531E600CCF439 /* board_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = board_view.rb; sourceTree = "<group>"; };
 		5F30FA4512F5466400CCF439 /* welcome_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = welcome_view.rb; sourceTree = "<group>"; };
 		5F30FA4612F5469300CCF439 /* game_create_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = game_create_view.rb; sourceTree = "<group>"; };
+		5F30FBAB12F6532400CCF439 /* player_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = player_view.rb; sourceTree = "<group>"; };
+		5F30FC8B12F6A10500CCF439 /* dice_view.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = dice_view.rb; sourceTree = "<group>"; };
+		5F30FC8C12F6A10500CCF439 /* dice.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = dice.rb; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -53,10 +55,12 @@
 				5F30F97512F52F4F00CCF439 /* path.rb */,
 				5F30F94412F529F800CCF439 /* path_view.rb */,
 				5F30F97612F52F4F00CCF439 /* player.rb */,
+				5F30FBAB12F6532400CCF439 /* player_view.rb */,
 				5F30F97712F52F4F00CCF439 /* selectable.rb */,
 				5F30F97912F52F4F00CCF439 /* tile.rb */,
 				5F30F94F12F52A1700CCF439 /* tile_view.rb */,
-				5F30F97812F52F4F00CCF439 /* text_view.rb */,
+				5F30FC8C12F6A10500CCF439 /* dice.rb */,
+				5F30FC8B12F6A10500CCF439 /* dice_view.rb */,
 			);
 			sourceTree = "<group>";
 		};
