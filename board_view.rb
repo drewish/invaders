@@ -3,6 +3,7 @@ include Gl,Glu,Glut
 
 require 'board'
 require 'base_view'
+require 'dice_view'
 require 'intersection_view'
 require 'path_view'
 require 'tile_view'
@@ -19,10 +20,11 @@ class BoardView < BaseView
     @render_list = @board.tiles.collect { | k, o | TileView.new(o) }
     @render_list += @board.intersections.collect { | k, o | IntersectionView.new(o) }
     @render_list += @board.paths.collect { | k, o | PathView.new(o) }
-    # In ruby 1.9 it sounds like  ary.each_with_index.collect { |o, i| ... }
-    # would be the best way to do this.
+    # In ruby 1.9 it sounds like ary.each_with_index.collect { |o, i| ... }
+    # would be the best way to do this, but for now we'll manage.
     @board.players.each_index do | i | 
       @render_list << PlayerView.new(@board.players[i], i)
     end
+    @render_list << DiceView.new(@board.dice)
   end
 end

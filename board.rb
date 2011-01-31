@@ -1,9 +1,10 @@
 require 'observer'
 
-require 'player'
-require 'tile'
+require 'dice'
 require 'intersection'
 require 'path'
+require 'player'
+require 'tile'
 
 class Board
   include Observable
@@ -12,7 +13,7 @@ class Board
     return "#{r}#{g}#{b}"
   end
 
-  attr_accessor :players, :intersections, :paths, :tiles
+  attr_accessor :dice, :intersections, :paths, :players, :tiles
 
   def initialize(players)
     @tiles = {}
@@ -21,6 +22,7 @@ class Board
     @players = players
     @active_player = @players.first
     @resources = {:brick => 19, :grain => 19, :lumber => 19, :ore => 19, :wool => 19}
+    @dice = Dice.new(2)
 
     # I'm use a hex grid coordinate system described here:
     #  http://www-cs-students.stanford.edu/~amitp/Articles/Hexagon2.html
