@@ -45,7 +45,7 @@ class GameCreateState
       players[:yellow] = [1, 1, 0]
     end
 
-    @owner.board = Board.new(players.collect { | name, color | Player.new(self, name, color) })
-    @owner.state = GameSetupState.new @owner
+    board = Board.new(players.collect { | name, color | Player.new(self, name, color) })
+    @owner.state = GameSetupState.new @owner, board
   end
 end

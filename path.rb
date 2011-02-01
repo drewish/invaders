@@ -22,26 +22,23 @@ class Path
   def settled?
     !@owner.nil?
   end
-  
-  def unsettled?
-    @owner.nil?
-  end
 
   def build(owner)
     raise ArgumentError, 'Must specify an owner' if owner.nil?
-    
-    if unsettled? and owner.pay_for :road
-      changed
+
+    if !settled?
       @owner = owner
+      @owner.pay_for self
+
+      changed
+      notify_observers self, :built
     end
-    
-    notify_observers self, :built
   end
   
   # Given an intersection return the other side of the path.
   def follow_from(i)
     if @intersections.include? i
-      @intersections[0] == i ? @intersections[1] : @intersections[0]
+      @intersections[(@intersections[0] == i ? 1 : 0)]
     else
       nil
     end

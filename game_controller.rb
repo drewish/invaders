@@ -9,12 +9,16 @@ require 'game_summary_state'
 
 class GameController
   attr_reader :state
-  attr_accessor :board, :view
+  attr_accessor :view
 
   def initialize
-    @view = nil
-    @board = nil
-    @state = WelcomeState.new self
+#    @view = nil
+#    @board = nil
+#    @state = WelcomeState.new self
+
+    players = {:red => [1, 0, 0], :blue => [0, 0, 1]}
+    board = Board.new(players.collect { | name, color | Player.new(self, name, color) })
+    @state = GameSetupState.new self, board
   end
 
   def state=(value)

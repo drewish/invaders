@@ -30,33 +30,28 @@ class Intersection
     !@owner.nil?
   end
   
-  def unsettled?
-    @owner.nil?
-  end
-  
+  # TODO: This should be moved out of here.    
   def build(owner)
     raise ArgumentError, 'Must specify an owner' if owner.nil?
     
-    # TODO: test for distance rule
-    # TODO: test for road connection (after game setup)
-    if unsettled? and owner.pay_for :settlement
+    if @type == :unsettled
       @owner = owner
       @type = :settlement
+      @owner.pay_for self
 
       changed
-    end
-    
-    notify_observers self, :built
+      notify_observers self, :built
+    end    
   end
   
   def upgrade
-    if @type == :settlement and @owner.pay_for :city
+    if @type == :settlement
       @type = :city
+      @owner.pay_for self
       
       changed
+      notify_observers self, :upgraded
     end
-    
-    notify_observers self, :upgraded
   end
   
   def adjacent_intersections

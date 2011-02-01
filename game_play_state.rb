@@ -1,14 +1,27 @@
 class GamePlayState
-  def initialize(owner)
-    @owner = owner
+  COSTS = {
+    :road => {:brick => 1, :lumber => 1},
+    :settlement => {:brick => 1, :lumber => 1, :grain => 1, :wool => 1},
+    :city => {:grain => 2, :ore => 3},
+    :development_card => {:wool => 1, :grain => 1, :ore => 1},
+  }
 
-    # Make every thing unselectable at this point.
-    @owner.view.render_list.each { | item | item.selectable = false }
+  def initialize(owner, board)
+    @owner, @board = owner, board
 
-    advance_turn
+    @board.active_player = @board.players.first
+    begin_turn
   end
 
-  def advance_turn()
+  def begin_turn
+puts "begin_turn"
+    # TODO: maybe let them play dev cards/do resources first?
+    @board.dice.roll
+    @board.produce_resources
+
+    # Make the dice clickable.
+    @owner.view.render_list.each { | item | if item.is_a? DiceView then item.selectable = true end }
+        
 =begin
     # Figure out what we should be doing in this part of the turn. 
     if @last_piece == nil || @last_piece.kind_of?(Path)
@@ -35,14 +48,26 @@ class GamePlayState
       end
     end
 =end
-    @owner.board.active_player = @owner.board.next_player
+  end
+
+  def finish_turn
+puts "finish_turn"
+    
+    if @board.players.any? { | player | player.score > 10 }
+      @owner.state = GameSummaryState.new @owner, @board
+    else
+      @board.active_player = @board.next_player
+      begin_turn
+    end
   end
 
   def process_selection(focus)
     # TODO: Confirm their selection.
-    focus.model.build @owner.board.active_player
-    @last_piece = focus.model
-    advance_turn
+#    focus.model.build @board.active_player
+#    @last_piece = focus.model
+puts focus
+
+    finish_turn
   end
 
   def process_keyboard(key, x, y)

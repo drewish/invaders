@@ -16,9 +16,6 @@ class PlayerView < BaseView
   def render
     glPushMatrix()
 
-    # Rotate the path so it follows the vector from 1 to 2 then move it so it is
-    # centered on the midpoint of the two intersections. Remember that the order
-    # of transformations is reversed.
     glTranslate(-5 + 2 * @index, 9, 0)
     glColor(*@player.color)
     if @player.active?
@@ -28,6 +25,23 @@ class PlayerView < BaseView
     glVertex2f(1, 1); glVertex2f(1, -1)
     glVertex2f(-1, -1); glVertex2f(-1, 1)
     glEnd()
+
+
+    # Text
+    glColor(1, 1, 1)
+
+    s = ''
+    @player.resources.each{ | type, value | s << type.to_s[0,1] + ":" + value.to_s}
+    # TODO i'm sure there's an idiom using inject that would be better here.
+    width = 0
+    s.each_byte { |c| width += glutBitmapWidth(GLUT_BITMAP_HELVETICA_12, c) }
+    glRasterPos3f(-0.01 * width, -0.5, 0);
+    s.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, c) }
+
+    s = @player.score.to_s
+    glRasterPos3f(0, 0.5, 0);
+    s.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
+
       
     glPopMatrix()
   end

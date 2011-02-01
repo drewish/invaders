@@ -1,9 +1,9 @@
 require 'board_view'
 
 class GameSetupState
-  def initialize(owner)
-    @owner = owner
-    @owner.view = BoardView.new(@owner.board)
+  def initialize(owner, board)
+    @owner, @board = owner, board
+    @owner.view = BoardView.new(@board)
 
     # Two ways to roll 3-6 and 8-11, omitting 7 since desert is a special case.
     tile_rolls = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12].sort_by { rand }
@@ -21,13 +21,13 @@ class GameSetupState
     end
     tile_settings = tile_settings.sort_by { rand }
 
-    @owner.board.tiles.each do | key, tile | 
+    @board.tiles.each do | key, tile | 
       settings = tile_settings.pop
       tile.type, tile.roll = settings[:type], settings[:roll]
     end
 
     # TODO: consult rules for picking first player which would affect order of @players.
-    players = @owner.board.players
+    players = @board.players
     # Everyone gets two turns: first to last then last to first.
     @turns_remaining = players + players.reverse
     @last_piece = nil
@@ -42,10 +42,10 @@ class GameSetupState
     # Figure out what we should be doing in this part of the turn. 
     if @last_piece == nil || @last_piece.kind_of?(Path)
       if @turns_remaining.count == 0
-        @owner.state = GamePlayState.new @owner
+        @owner.state = GamePlayState.new @owner, @board
         return
       end
-      @owner.board.active_player = @turns_remaining.shift
+      @board.active_player = @turns_remaining.shift
       type_of_next_piece = :intersection
     else
       type_of_next_piece = :path
@@ -67,7 +67,7 @@ class GameSetupState
 
   def process_selection(focus)
     # TODO: Confirm their selection.
-    focus.model.build @owner.board.active_player
+    focus.model.build @board.active_player
     @last_piece = focus.model
     advance_turn
   end

@@ -3,27 +3,27 @@ require 'observer'
 class Player
   include Observable
 
-  COSTS = {
-    :road => {:brick => 1, :lumber => 1},
-    :settlement => {:brick => 1, :lumber => 1, :grain => 1, :wool => 1},
-    :city => {:grain => 2, :ore => 3},
-    :development_card => {:wool => 1, :grain => 1, :ore => 1},
-  }
+
   attr_reader(:name, :color, :resources)
 
   def initialize(board, name, color) 
     @board, @name, @color = board, name, color
     @resources = {:brick => 0, :grain => 0, :lumber => 0, :ore => 0, :wool => 0}
     @active = false
+    @purchases = []
   end
 
   def inspect
-    "<Player #{@name} color: #{@color}\nresources: #{@resources}>"
+    "<Player #{@name} color: #{@color} score: {score} resources: #{@resources}>"
   end
 
-  def pay_for(type)
-    puts "paying for " + type.to_s + "  " + COSTS[type].inspect
-    COSTS[type]
+  def afford?(resources)
+    resources.all? { | type, ammount | ammount <= @resources[type] }
+  end
+  
+  def pay_for(item)
+puts "pay for: " + item.to_s
+    @purchases << item
   end
   
   def active?
@@ -36,5 +36,22 @@ class Player
     changed
     @active = !!value
     notify_observers self, :changed
+  end
+  
+  def score
+    @purchases.inject(0) do | total, item | 
+      total += case item
+      when Path 
+        1
+      when Intersection
+        case item.type 
+        when :settlement then 1
+        when :city then 2
+        else 0
+        end
+      else
+        0
+      end
+    end
   end
 end

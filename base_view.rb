@@ -176,10 +176,10 @@ class BaseView
       names = ptr[p + 3, name_count]
       p += 3 + name_count;
 
-      puts " number of names for hit = #{name_count}"
-      puts " z1 is #{z1}"
-      puts " z2 is #{z2}"
-      puts "Names = " + names.inspect
+      #puts " number of names for hit = #{name_count}"
+      #puts " z1 is #{z1}"
+      #puts " z2 is #{z2}"
+      #puts "Names = " + names.inspect
       
       result << names
     end

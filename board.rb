@@ -17,6 +17,7 @@ class Board
 
   def initialize(players)
     @tiles = {}
+    @tiles_by_roll = []
     @intersections = {}
     @paths = {}
     @players = players
@@ -98,5 +99,36 @@ class Board
   def next_player
     index = @players.index(active_player) + 1 % (@players.count - 1)
     @players[index]
+  end
+  
+  def charge_for(item)
+  #TODO: finish me...
+    item.owner
+    case item
+      when Intersection
+      when Path
+    end
+  end
+  
+  def produce_resources
+    roll = @dice.values.inject(:+)
+    # We cache the roll => tile mapping once rather than iterating over it. 
+    # Since the caller of the board is responsible for setting the resource
+    # type/roll we want to make sure we don't run this before it's been setup.
+    # Make sure there are no zeros (default value) in the list of rolls.
+    if @tiles_by_roll.count == 0
+      @tiles.each do | key, tile |
+        raise ArgumentError, 'Tile has no roll set.' if tile.roll < 1
+        
+        # TODO figure out the short ruby way to do this.
+        if @tiles_by_roll[tile.roll]
+          @tiles_by_roll[tile.roll] << tile
+        else
+          @tiles_by_roll[tile.roll] = [tile]
+        end
+      end
+    end
+    
+    @tiles_by_roll[roll].each { | tile | tile.produce_resources }
   end
 end

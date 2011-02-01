@@ -53,4 +53,25 @@ class Tile
       [0, 0, 0]
     end
   end
+  
+  # TODO Might need to move this method to Board to be able to honor the rule:
+  # If there is not enough of a given resource to fulfill everyone's 
+  # production, then no one receives any of that resource.
+  def produce_resources
+    if roll == 7
+      # TODO place robber
+    else
+      @intersections.each do | dir, intersection | 
+        cards = case intersection.type
+          when :settlement then 1
+          when :city then 2
+          else 0
+        end
+puts "paying out: #{cards} on #{intersection}"
+        if cards > 0
+          intersection.owner.resources[@type] += cards
+        end
+      end
+    end
+  end
 end
