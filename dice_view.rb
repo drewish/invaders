@@ -9,49 +9,50 @@ class DiceView < BaseView
 
     super model
     @dice = model
+    @qobj = gluNewQuadric()
+    gluQuadricDrawStyle(@qobj, GLU_FILL)
+
   end
 
-  def drawDot(x, y)
-    qobj = gluNewQuadric()
-    gluQuadricDrawStyle(qobj, GLU_FILL)
+  def drawPip(x, y)
     glPushMatrix()
-    glRotate(30, 0, 0, 1)
-    gluDisk(qobj, 0, 0.1, 10, 1)
+    glTranslate(x, y, 0.0)
+    gluDisk(@qobj, 0, 0.1, 10, 1)
     glPopMatrix()
   end
 
-  def draw1
-    glPushMatrix()
-    glRotate(30, 0, 0, 1)
-    drawDot 0, 0
-    glPopMatrix()
+  def drawPips(number, l)
+    d = l / 2
+
+    if [1, 3, 5].include?(number)
+      drawPip(0, 0)
+    end
+    if [2, 3, 4, 6].include?(number)
+      drawPip(-d, -d)
+      drawPip(d, d)
+    end
+    if [4, 5, 6].include?(number)
+      drawPip(-d, d)
+      drawPip(d, -d)
+    end
+    if 6 == number
+      drawPip(-d, 0)
+      drawPip(d, 0)  
+    end
   end
   
-  def draw3
-    gl
-  end
-
-
   def render
     @dice.values.each_index do | i |
       glPushMatrix()
       
       glTranslate(-2 + 2 * i, -9, 0)
 
-#compute the seven points on the dice in the shape of an H
-      lt = [];
-
+      s = 1
       glColor(1, 1, 1)
-=begin
-      glBegin(GL_POLYGON)
-      glVertex2f(1, 1); glVertex2f(1, -1)
-      glVertex2f(-1, -1); glVertex2f(-1, 1)
-      glEnd()
-=end
-      glutSolidCube(1)
-
+      glutSolidCube(s)
+      
       glColor(0,0,0)
-      drawDot(0,0)
+      drawPips @dice.values[i], s * 0.6
 =begin
       d1()
       rY
@@ -65,17 +66,7 @@ class DiceView < BaseView
       r?
       r?
       d5
-=end
-      
-      # Text
-      glColor(0, 0, 0)
-      s = @dice.values[i].to_s
-      # TODO i'm sure there's an idiom using inject that would be better here.
-      width = 0
-      s.each_byte { |c| width += glutBitmapWidth(GLUT_BITMAP_HELVETICA_18, c) }
-      glRasterPos3f(-0.01 * width, -0.15, 0);
-      s.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
-      
+=end      
       glPopMatrix()
     end    
   end
