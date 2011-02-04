@@ -24,7 +24,7 @@ class Text
     # Background
     if @background_color
       glBegin(GL_QUADS)
-      glColor(*@background_color)
+      glColor(@background_color)
       glVertex(width, 1, 0)
       glVertex(-width, 1, 0)
       glVertex(-width, -1, 0)
@@ -33,7 +33,7 @@ class Text
     end
     
     # Text
-    glColor(*@text_color)
+    glColor(@text_color)
     glRasterPos3f(-width / 2, -0.15, 0);
     @text.each_byte { |c| glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c) }
 

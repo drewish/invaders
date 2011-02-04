@@ -28,11 +28,11 @@ class IntersectionView < BaseView
       gluDisk(qobj, 0, 0.25, 6, 1)
 
     when :settlement
-      glColor(*@intersection.owner.color)
+      glColor(@intersection.owner.color)
       gluDisk(qobj, 0, 0.25, 3, 1)
 
     when :city
-      glColor(*@intersection.owner.color)
+      glColor(@intersection.owner.color)
       gluDisk(qobj, 0, 0.25, 4, 1)
     end
 

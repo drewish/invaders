@@ -49,6 +49,7 @@ class GameController
   end
 
   def process_mouse(button, state, x, y)
+
     if (state == GLUT_DOWN)
       case button
         when GLUT_LEFT_BUTTON

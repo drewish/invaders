@@ -32,7 +32,7 @@ class PathView < BaseView
     glRotate(@theta, 0, 0, 1)
     case 
     when @path.owner
-      glColor(*@path.owner.color)
+      glColor(@path.owner.color)
     when selectable
       glColor(0.6, 0.6, 0.6)
     else
